@@ -6,6 +6,7 @@ from .common import make_matrix, pp
 
 GAUS = "gaus"
 CUSTOM_BREAKDOWN = "breakdown"
+IDENTITY = "identity"
 X = "X"
 Y = "Y"
 
@@ -22,6 +23,7 @@ class TestBasic(unittest.TestCase):
         kernels = {
             GAUS: [[1/9, 1/9, 1/9], [1/9, 1/9, 1/9], [1/9, 1/9, 1/9]],
             CUSTOM_BREAKDOWN: [[5/3, 5/9, 10/9], [8/3, 8/9, 16/9], [4/3, 4/9, 8/9]],
+            IDENTITY: [[0, 0, 0], [0, 1, 0], [0, 0, 0]],
         }
         for method in kernels:
             self.kernels[method] = np.array(kernels[method])
