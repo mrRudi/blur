@@ -48,8 +48,8 @@ class TestBasic(unittest.TestCase):
             GAUS.g9: [[1/9, 1/9, 1/9], [1/9, 1/9, 1/9], [1/9, 1/9, 1/9]],
             CUSTOM.breakdown1: [[5/3, 5/9, 10/9], [8/3, 8/9, 16/9], [4/3, 4/9, 8/9]],
             IDENTITY.identity1: [[0, 0, 0], [0, 1, 0], [0, 0, 0]],
-            SHARPEN.center4: [[0, -1, 0], [-1, 5, -1], [0, -1, 0]],
-            SHARPEN.center5: [[0, -1, 0], [-1, 4, -1], [0, -1, 0]],
+            SHARPEN.center4: [[0, -1, 0], [-1, 4, -1], [0, -1, 0]],
+            SHARPEN.center5: [[0, -1, 0], [-1, 5, -1], [0, -1, 0]],
             RIDGE_DETECTION.rd_mns1_7: [[-1, -1, -1], [-1, 7, -1], [-1, -1, -1]],
             RIDGE_DETECTION.rd_mns1_8: [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]],
             RIDGE_DETECTION.rd_mns1_9: [[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]],
@@ -93,11 +93,19 @@ class TestBasic(unittest.TestCase):
         )
 
     @staticmethod
-    def step_filter(title, matrix, kernel):
+    def step_filter(title, matrix, kernel, show=True):
         res = TestBasic.filter(matrix, kernel)
-        print(title)
-        pp(res)
+        if show:
+            print(title)
+            pp(res)
         return res
+
+    @staticmethod
+    def deviation(matrixA, matrixB, show=True):
+        bias = np.absolute(TestBasic.round(matrixA) - TestBasic.round(matrixB))
+        if show:
+            pp(bias)
+        return bias
 
 
 def run():
