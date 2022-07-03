@@ -1,5 +1,5 @@
 
-from lib import TestBasic, GAUS, RIDGE_DETECTION, run, SHARPEN, pp
+from lib import TestBasic, BLUR, RIDGE_DETECTION, run, SHARPEN, pp
 
 
 class TestGausSelection(TestBasic):
@@ -16,25 +16,25 @@ class TestGausSelection(TestBasic):
         TestGausSelection.deviation(self.matrix, reverse)
 
     # def test_Filter1(self):
-    #     self.compare_multiplication(GAUS.g9, SHARPEN.center4)
+    #     self.compare_multiplication(BLUR.box_3x3_div9, SHARPEN.center4)
 
     def test_Filter2(self):
-        self.compare_multiplication(GAUS.g9, SHARPEN.center5)
+        self.compare_multiplication(BLUR.box_3x3_div9, SHARPEN.center5)
 
     # def test_Filter3(self):
-    #     self.compare_multiplication(GAUS.g9, RIDGE_DETECTION.rd_mns1_7)
+    #     self.compare_multiplication(BLUR.box_3x3_div9, RIDGE_DETECTION.rd_mns1_7)
 
     # def test_Filter4(self):
-    #     self.compare_multiplication(GAUS.g9, RIDGE_DETECTION.rd_mns1_8)
+    #     self.compare_multiplication(BLUR.box_3x3_div9, RIDGE_DETECTION.rd_mns1_8)
 
     # def test_Filter5(self):
-    #     self.compare_multiplication(GAUS.g9, RIDGE_DETECTION.rd_mns1_9)
+    #     self.compare_multiplication(BLUR.box_3x3_div9, RIDGE_DETECTION.rd_mns1_9)
 
     # def test_Filter6(self):
-    #     self.compare_multiplication(GAUS.g9, RIDGE_DETECTION.rd_mns1div9_10)
+    #     self.compare_multiplication(BLUR.box_3x3_div9, RIDGE_DETECTION.rd_mns1div9_10)
 
     # def test_Filter7(self):
-    #     self.compare_multiplication(GAUS.g9, RIDGE_DETECTION.rd_mns2_10)
+    #     self.compare_multiplication(BLUR.box_3x3_div9, RIDGE_DETECTION.rd_mns2_10)
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-from lib import TestBasic, GAUS, CUSTOM, Y, X, run
+from lib import TestBasic, BLUR, CUSTOM, Y, X, run
 
 
 class TestKernel(TestBasic):
@@ -13,7 +13,7 @@ class TestKernel(TestBasic):
         TestKernel.compare_arrays(dst_xy, dst_x_y)
 
     def test_Gaus(self):
-        self.compare_multiplication(GAUS.g9)
+        self.compare_multiplication(BLUR.box_3x3_div9)
 
     def test_Breakdown(self):
         self.compare_multiplication(CUSTOM.breakdown1)

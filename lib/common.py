@@ -1,4 +1,4 @@
-import random
+from .constant import make_random, make_arithmetic_progression, make_full
 
 
 def pp(matrix, space=3, divider=",", border="|", end=True):
@@ -20,11 +20,9 @@ def pp(matrix, space=3, divider=",", border="|", end=True):
 def make_matrix(type, **options):
     R = options.get('R', 4)
     if type == "1":
-        return [[1 for _ in range(R)] for _ in range(R)]
+        return make_full(R, 1)
     if type == "rand":
-        Min = options.get('Min', 1)
-        Max = options.get('Max', 10)
-        return [[random.randint(Min, Max) for _ in range(R)] for _ in range(R)]
+        return make_random(R, options.get('Min', 1), options.get('Max', 10))
     if type == "up":
-        return [[1+x+y*R for x in range(R)] for y in range(R)]
+        return make_arithmetic_progression(R)
     raise Exception("setting type is required")
