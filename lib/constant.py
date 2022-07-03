@@ -7,8 +7,10 @@ Y = "Y"
 
 
 class SHARPEN(enum.Enum):
-    center4 = "sharpen 4"
-    center5 = "sharpen 5"
+    center4_mns1_0 = "sharpen 4 -1 0"
+    center5_mns1_0 = "sharpen 5 -1 0"
+    center12_mns2_mns1 = "sharpen 12 -2 -1"
+    sharp_5x5_mnsdiv256 = "sharp 5x5 -1/256"
 
 
 class RIDGE_DETECTION(enum.Enum):
@@ -33,7 +35,6 @@ class CUSTOM(enum.Enum):
     horizontal_direction2 = "horizontal direction 2"
     vertical_direction1 = "vertical direction 1"
     vertical_direction2 = "vertical direction 2"
-    unsharp_5x5_mnsdiv256 = "unsharp 5x5 -1/256"
 
 
 class IDENTITY(enum.Enum):
@@ -44,8 +45,8 @@ def make_circle(center, border):
     return [[border, border, border], [border, center, border], [border, border, border]]
 
 
-def make_shapen(center):
-    return [[0, -1, 0], [-1, center, -1], [0, -1, 0]]
+def make_shapen(center, a, b):
+    return [[b, a, b], [a, center, a], [b, a, b]]
 
 
 def make_horizontal_3x3_direction(a, b):
@@ -90,14 +91,6 @@ kernels = {
         [12/9, 4/9, 8/9]
     ],
 
-    CUSTOM.unsharp_5x5_mnsdiv256: [
-        [-1/256, -4/256, -6/256, -4/256, -1/256],
-        [-4/256, -16/256, -24/256, -16/256, -4/256],
-        [-6/256, -24/256, 476/256, -24/256, -6/256],
-        [-4/256, -16/256, -24/256, -16/256, -4/256],
-        [-1/256, -4/256, -6/256, -4/256, -1/256],
-    ],
-
     CUSTOM.emboss1: [
         [-2, -1, 0],
         [-1, 1, 1],
@@ -111,8 +104,16 @@ kernels = {
 
     IDENTITY.identity1: make_circle(1, 0),
 
-    SHARPEN.center4: make_shapen(4),
-    SHARPEN.center5: make_shapen(5),
+    SHARPEN.center4_mns1_0: make_shapen(4, -1, 0),
+    SHARPEN.center5_mns1_0: make_shapen(5, -1, 0),
+    SHARPEN.center12_mns2_mns1: make_shapen(12, -2, -1),
+    SHARPEN.sharp_5x5_mnsdiv256: [
+        [-1/256, -4/256, -6/256, -4/256, -1/256],
+        [-4/256, -16/256, -24/256, -16/256, -4/256],
+        [-6/256, -24/256, 476/256, -24/256, -6/256],
+        [-4/256, -16/256, -24/256, -16/256, -4/256],
+        [-1/256, -4/256, -6/256, -4/256, -1/256],
+    ],
 
     RIDGE_DETECTION.rd_mns1_7: make_circle(7, -1),
     RIDGE_DETECTION.rd_mns1_8: make_circle(8, -1),
